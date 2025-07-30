@@ -1,0 +1,2 @@
+Dataset,Trace Generator,Training Time (hours),Generating Time (minutes),Max Flow Size (thousand),#Flows (million)
+TEST,Generated,0.5,2.5,5.123,0.012345

@@ -1,0 +1,11 @@
+dataset: ton_iot
+type: pcap
+folder: diff_syn
+label2path:
+  raw: ../../data/ton_iot/normal_1.csv
+  CTGAN: ../../result/ctgan/ton/syn.csv
+  NetDiffusion: ../../result/netdiffusion/reconstructed_ton.csv
+  E-WGAN-GP: ../../result/e-wgan-gp/ton_iot/syn.csv
+  REaLTabFormer: ../../result/realtabformer/ton/realtabformer.csv
+  NetShare: ../../result/netshare/ton_iot/post_processed_data/syn.csv
+  CascadeNet: ../../result/cascadenet/ton-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.csv

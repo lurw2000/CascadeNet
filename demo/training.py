@@ -1,0 +1,31 @@
+import json
+from nta.builder import CascadeGANCompBuilder
+from argparse import ArgumentParser
+
+import random
+import numpy as np
+import torch
+random.seed(0)
+np.random.seed(0)
+torch.manual_seed(0)
+
+
+def parse_args():
+
+    parser = ArgumentParser(description='script to train cascadegan')
+    parser.add_argument('--path', type=str, help='path of configuration')
+    
+    return parser.parse_args()
+
+if __name__ == "__main__":
+    args = parse_args()
+
+    config = json.load(open(args.path, "r"))
+
+    builder = CascadeGANCompBuilder(config)
+
+    builder.build_all(
+        device=torch.device("cuda"),
+        preprocess=True
+    )
+    builder.pretrain_finetune()

@@ -1,0 +1,170 @@
+{
+    "hyperparams": {
+        "dataset": "ca",
+        "use_feature_extraction": false,
+        "output_zero_flag": true,
+        "pkt_rate_sample_method": 1000
+    },
+    "pre_post_processor": {
+        "input_folder": "../data/ca",
+        "input_file": "raw.csv",
+        "input_type": "pcap",
+        "output_folder": "../result/cascadenet/ca-feature_False-zero_flag_True-rate_1000",
+        "trace_truncate_ratio": 1,
+        "flow_tuple": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "pkt_rate_sample_method": [
+            "time_point_count",
+            1000
+        ],
+        "word2vec_size": 10,
+        "output_type": "global_normalization_with_FTA_w/o_TAL",
+        "output_zero_flag": true,
+        "throughput": true,
+        "window_size": 11,
+        "feature_extraction": {
+            "normalize_features": "max",
+            "methods": {
+                "simply_zeros": {
+                    "use_log": true
+                },
+                "simply_zeros2": {
+                    "use_log": true
+                }
+            }
+        },
+        "timestamp_recovery": {
+            "method": "timestamp_in_unit"
+        }
+    },
+    "gan": {
+        "condition_gen_flag": false,
+        "generator": {
+            "flowlevel": {
+                "noise_dim": 100,
+                "mlp": {
+                    "hidden_dim": 512,
+                    "num_layers": 2,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": true
+                }
+            },
+            "packetrate": {
+                "third_activation_label": false,
+                "flow_time_adjustment": true,
+                "noise_dim": 100,
+                "rnn": {
+                    "hidden_dim": 512,
+                    "num_layers": 1,
+                    "bidirectional": false,
+                    "output": {
+                        "hidden_dim": 512,
+                        "num_layers": 0,
+                        "activation": "GELU",
+                        "normalization": null,
+                        "batch_norm": false
+                    }
+                },
+                "sample_len": 5,
+                "zero_flag": true
+            },
+            "packetfield": {
+                "noise_dim": 100,
+                "mlp": {
+                    "hidden_dim": 512,
+                    "num_layers": 2,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": true
+                }
+            }
+        },
+        "discriminator": {
+            "flowlevel": {
+                "mlp": {
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            },
+            "packetrate": {
+                "mlp": {
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            },
+            "packetfield": {
+                "mlp": {
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            }
+        },
+        "trainer": {
+            "flowlevel": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 0.0001
+            },
+            "packetrate": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 0.0001
+            },
+            "packetfield": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 0.0001
+            },
+            "cascade_comp": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 0.0001,
+                "alpha": 1,
+                "beta": 1
+            }
+        }
+    },
+    "dataloader": {
+        "flowlevel": {
+            "batch_size": 128,
+            "num_workers": 1
+        },
+        "packetrate": {
+            "batch_size": 128,
+            "num_workers": 1
+        },
+        "packetfield": {
+            "batch_size": 128,
+            "num_workers": 1
+        },
+        "cascade_comp": {
+            "batch_size": 128,
+            "num_workers": 1
+        }
+    },
+    "epoch": {
+        "flowlevel": 40,
+        "packetrate": 40,
+        "packetfield": 20,
+        "cascade_comp": 4
+    }
+}

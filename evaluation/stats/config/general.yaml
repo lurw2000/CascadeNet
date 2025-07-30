@@ -1,0 +1,17 @@
+
+# General configuration that are shared by all tasks
+## plot and save
+save_figure: True
+show_figure: True
+
+## Set to false to save the result of field_label_data (skip the recomputation)
+## This can be helpful when we can adjust the plot style without re-computing the field data
+overwrite_history_result: True
+# overwrite_history_result: False
+
+# Configuration parameter to specify a CSV file for normalization values
+# Set to a file path to use pre-computed normalization values
+normalization_csv: "../normalization.csv"
+
+# Whether to save normalization values to CSV
+save_normalization: True

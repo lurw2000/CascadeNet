@@ -1,0 +1,8 @@
+dataset: dc
+type: pcap
+folder: ablation
+label2path:
+  raw: ../../data/dc/raw.csv
+  CN-w/o-ZI: ../../result/cascadenet/dc-feature_True-zero_flag_False-rate_100/postprocess/syn_comp.csv
+  CN-w/o-Cond: ../../result/cascadenet/dc-feature_False-zero_flag_True-rate_100/postprocess/syn_comp.csv
+  CascadeNet: ../../result/cascadenet/dc-feature_True-zero_flag_True-rate_100/postprocess/syn_comp.csv

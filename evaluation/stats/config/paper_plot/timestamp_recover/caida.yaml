@@ -1,0 +1,8 @@
+dataset: caida
+type: pcap
+folder: timestamp_recover
+label2path:
+  raw: ../../data/caida/raw.csv
+  EQ: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.equal.csv
+  SP: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.median_span.csv
+  ML: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.timestamp_ratio.csv

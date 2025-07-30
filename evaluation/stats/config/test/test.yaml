@@ -1,0 +1,8 @@
+{
+  "dataset": "test",
+  "type": "pcap",
+  "label2path": {
+    "raw": "../../test_data/original.csv",
+    "Generated": "../../test_data/generated.csv"
+  }
+}

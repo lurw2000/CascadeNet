@@ -1,0 +1,8 @@
+dataset: ton_iot
+type: pcap
+folder: timestamp_recover
+label2path:
+  raw: ../../data/ton_iot/normal_1.csv
+  EQ: ../../result/cascadenet/ton-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.equal.csv
+  SP: ../../result/cascadenet/ton-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.median_span.csv
+  ML: ../../result/cascadenet/ton-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.timestamp_ratio.csv

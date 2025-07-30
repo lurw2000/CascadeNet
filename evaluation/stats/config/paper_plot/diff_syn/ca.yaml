@@ -1,0 +1,11 @@
+dataset: ca
+type: pcap
+folder: diff_syn
+label2path:
+  raw: ../../data/ca/raw.csv
+  CTGAN: ../../result/ctgan/ca/syn.csv
+  E-WGAN-GP: ../../result/e-wgan-gp/ca/syn.csv
+  REaLTabFormer: ../../result/realtabformer/ca/realtabformer.csv
+  STAN: ../../result/stan/ca/syn.csv
+  NetShare: ../../result/netshare/ca/post_processed_data/syn.csv
+  CascadeNet: ../../result/cascadenet/ca-feature_True-zero_flag_True-rate_20/postprocess/syn_comp.csv

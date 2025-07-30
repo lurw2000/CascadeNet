@@ -1,0 +1,8 @@
+dataset: caida
+type: pcap
+folder: ablation
+label2path:
+  raw: ../../data/caida/raw.csv
+  CN-w/o-ZI: ../../result/cascadenet/caida-feature_True-zero_flag_False-rate_200/postprocess/syn_comp.csv
+  CN-w/o-Cond: ../../result/cascadenet/caida-feature_False-zero_flag_True-rate_200/postprocess/syn_comp.csv
+  CascadeNet: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.csv

@@ -1,0 +1,11 @@
+dataset: caida
+type: pcap
+folder: diff_syn
+label2path:
+  raw: ../../data/caida/raw.csv
+  CTGAN: ../../result/ctgan/caida/syn.csv
+  E-WGAN-GP: ../../result/e-wgan-gp/caida/syn.csv
+  REaLTabFormer: ../../result/realtabformer/caida/realtabformer.csv
+  STAN: ../../result/stan/caida/syn.csv
+  NetShare: ../../result/netshare/caida/post_processed_data/syn.csv
+  CascadeNet: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.csv

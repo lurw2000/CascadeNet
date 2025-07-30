@@ -1,0 +1,8 @@
+dataset: dc
+type: pcap
+folder: timestamp_recover
+label2path:
+  raw: ../../data/dc/raw.csv
+  EQ: ../../result/cascadenet/dc-feature_True-zero_flag_True-rate_100/postprocess/syn_comp.equal.csv
+  SP: ../../result/cascadenet/dc-feature_True-zero_flag_True-rate_100/postprocess/syn_comp.median_span.csv
+  ML: ../../result/cascadenet/dc-feature_True-zero_flag_True-rate_100/postprocess/syn_comp.timestamp_ratio.csv

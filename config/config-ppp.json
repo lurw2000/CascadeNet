@@ -1,0 +1,61 @@
+{
+    "pre_post_processor": {
+        "input_folder": "data/caida_mini",
+        "input_file": "raw.csv",
+        "input_type": "pcap",
+        "output_folder": "result_local/ppp_func",
+        "trace_truncate_ratio": 1,
+        "flow_tuple": [0, 1, 2, 3, 4],
+        "pkt_rate_sample_method": ["time_point_count", 100],
+        "word2vec_size": 10,
+        "metaoutput_type": "global_max_log_packetrate_w/o_dynamic2",
+        "output_zero_flag": true,
+        "log1p_norm": false,
+        "window_size": 5,
+        "flow_filter": {
+            "flowsize": {
+                "min": 5,
+                "max": 80
+            },
+            "flow_duration_ratio": {
+                "min": 0.1,
+                "max": 1
+            },
+            "nonzero_interval_count": {
+                "min": 5,
+                "max": "inf"
+            },
+            "max_packetrate": {
+                "min": 3,
+                "max": "inf"
+            }
+        },
+        "feature_extraction": {
+            "normalize_features": "max",
+            "methods": {
+                "number_of_packets": {
+                    "use_log": true
+                },
+                "duration": {
+                    "interval_duration": 1,
+                    "use_log": false
+                },
+                "number_of_nonzero_intervals": {
+                    "use_log": false
+                },
+                "max_packetrate": {
+                    "use_log": true
+                },
+                "mean_nonzero_packetrate": {
+                    "use_log": true
+                },
+                "std_nonzero_packetrate": {
+                    "use_log": true
+                },
+                "mean_gap_between_nonzero": {
+                    "use_log": false
+                }
+            }
+        }
+    }
+}

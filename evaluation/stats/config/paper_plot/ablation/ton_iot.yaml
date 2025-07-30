@@ -1,0 +1,8 @@
+dataset: ton_iot
+type: pcap
+folder: ablation
+label2path:
+  raw: ../../data/ton_iot/normal_1.csv
+  CN-w/o-ZI: ../../result/cascadenet/ton-feature_True-zero_flag_False-rate_200/postprocess/syn_comp.csv
+  CN-w/o-Cond: ../../result/cascadenet/ton-feature_False-zero_flag_True-rate_200/postprocess/syn_comp.csv
+  CascadeNet: ../../result/cascadenet/ton-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.csv

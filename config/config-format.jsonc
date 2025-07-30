@@ -1,0 +1,190 @@
+{
+    "pre_post_processor": {
+        // Read data from os.path.join(input_folder, input_file)
+        "input_folder": "/gpfsnyu/scratch/rl4689/NetworkML/data/caida",
+        "input_file": "raw.csv",
+        // type of the input dataset, could be "pcap" or "netflow"
+        "input_type": "pcap", 
+        // Save preprocessed / postprocessed data to output_folder
+        "output_folder": "/gpfsnyu/scratch/rl4689/NetworkML/result/cascadegan_sigcomm24/caida/vanilla_LM-5_200",
+        // Truncate the trace to the first trace_truncate_ratio
+        "trace_truncate_ratio": 1,
+        // The order of the five tuple, please don't change
+        "flow_tuple": [0, 1, 2, 3, 4],
+        // the way how packetrate is sampled
+        // If the first element is  "time_point_count", then sample x times (x is the second element)
+        // If the first element is  "time_unit_exp", then sample every 10^x second (x is the second element)
+        "pkt_rate_sample_method": ["time_point_count", 200],
+        // number of dimensions of word2vec embedding
+        "word2vec_size": 10,
+        // output options
+        "output_type": "global_normalization_with_FTA_w/o_TAL",
+        "output_zero_flag": true,
+        // whether to add throughput into output
+        "throughput": true,
+        // the window size how packetinfo is extracted from packetrate
+        "window_size": 11,
+        // the condition extracted
+        "feature_extraction": {
+            "normalize_features": "max",
+            "methods": {
+                "number_of_packets": {
+                    "use_log": true
+                },
+                "duration": {
+                    "interval_duration": 1,
+                    "use_log": false
+                },
+                "number_of_nonzero_intervals": {
+                    "use_log": false
+                },
+                "max_packetrate": {
+                    "use_log": true
+                },
+                "mean_nonzero_packetrate": {
+                    "use_log": true
+                },
+                "std_nonzero_packetrate": {
+                    "use_log": true
+                },
+                "mean_gap_between_nonzero": {
+                    "use_log": false
+                },
+                "flowstart": {
+                    "use_log": false
+                },
+                "flowend": {
+                    "use_log": false
+                }
+            }
+        },
+        // how timestamp is recovered
+        "timestamp_recovery": {
+            "method": "timestamp_in_unit"
+        }
+    },
+    "gan": {
+        "condition_gen_flag": false,
+        "generator": {
+            "flowlevel": {
+                "noise_dim": 100,
+                "mlp":{
+                    "hidden_dim": 512,
+                    "num_layers": 2,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": true
+                }
+            },
+            "packetrate":{
+                "third_activation_label": false,
+                "flow_time_adjustment": true,
+                "noise_dim": 100,
+                "rnn":{
+                    "hidden_dim": 512,
+                    "num_layers": 1,
+                    "bidirectional": false,
+                    "output":{
+                        "hidden_dim": 512,
+                        "num_layers": 0,
+                        "activation": "GELU",
+                        "normalization": null,
+                        "batch_norm": false
+                    }
+                },
+                "sample_len": 5
+            },
+            "packetfield":{
+                "noise_dim": 100,
+                "mlp":{
+                    "hidden_dim": 512,
+                    "num_layers": 2,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": true
+                }
+            }
+        },
+        "discriminator": {
+            "flowlevel":{
+                "mlp":{
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            },
+            "packetrate": {
+                "mlp":{
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            },
+            "packetfield":{
+                "mlp":{
+                    "hidden_dim": 512,
+                    "num_layers": 4,
+                    "activation": "GELU",
+                    "normalization": null,
+                    "batch_norm": false
+                }
+            }
+        },
+        "trainer":{
+            "flowlevel": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 1e-4
+            },
+            "packetrate": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 1e-4
+            },
+            "packetfield": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 1e-4
+            },
+            "cascade_comp": {
+                "d_iter": 5,
+                "gradient_penalty": 10,
+                "optimizer": "Adam",
+                "learning_rate": 1e-4,
+                "alpha": 1,
+                "beta": 1
+            }
+        }
+    },
+    "dataloader": {
+        "flowlevel": {
+            "batch_size": 128,
+            "num_workers": 8
+        },
+        "packetrate": {
+            "batch_size": 128,
+            "num_workers": 8
+        },
+        "packetfield": {
+            "batch_size": 128,
+            "num_workers": 8
+        },
+        "cascade_comp": {
+            "batch_size": 128,
+            "num_workers": 8
+        }
+    },
+    "epoch": {
+        "flowlevel": 200,
+        "packetrate": 200,
+        "packetfield": 20,
+        "cascade_comp": 200
+    }
+}

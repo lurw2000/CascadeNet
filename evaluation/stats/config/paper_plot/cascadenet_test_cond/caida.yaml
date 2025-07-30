@@ -1,0 +1,13 @@
+dataset: caida
+type: pcap
+folder: cascadenet_test_cond
+label2path:
+  raw: ../../data/caida/raw.csv
+  CN-w/o-NPF: ../../result/cascadegan_test/caida/wo_NPF/postprocess/syn_comp.csv
+  CN-w/o-DUR: ../../result/cascadegan_test/caida/wo_DUR/postprocess/syn_comp.csv
+  CN-w/o-NumA: ../../result/cascadegan_test/caida/wo_NumA/postprocess/syn_comp.csv
+  CN-w/o-MaxPR: ../../result/cascadegan_test/caida/wo_MaxPR/postprocess/syn_comp.csv
+  CN-w/o-MeanPR: ../../result/cascadegan_test/caida/wo_MeanPR/postprocess/syn_comp.csv
+  CN-w/o-StdPR: ../../result/cascadegan_test/caida/wo_StdPR/postprocess/syn_comp.csv
+  CN-w/o-MeanI:  ../../result/cascadegan_test/caida/wo_MeanI/postprocess/syn_comp.csv
+  CascadeNet: ../../result/cascadenet/caida-feature_True-zero_flag_True-rate_200/postprocess/syn_comp.csv
