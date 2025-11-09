@@ -1,11 +1,15 @@
 """
 This script plots the packet rate of different datasets with dataset-specific visualization settings.
 """
+import matplotlib
 import matplotlib.pyplot as plt
 import os
 import numpy as np
 import nta.utils.vis as vis
 from evaluation.stats.util.argparser import *
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 """
 Dataset-specific Configuration including color mappings

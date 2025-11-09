@@ -4,7 +4,11 @@ import numpy as np
 import os
 import argparse
 import nta.utils.vis as vis
+import matplotlib
 from matplotlib.patches import Rectangle
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def get_dataset_config(test_mode=False):
     """

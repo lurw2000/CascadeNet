@@ -1,7 +1,7 @@
 """
 This script plots the statistical feature differences between raw and synthetic traces.
 """
-
+import matplotlib
 import matplotlib.pyplot as plt
 import os 
 import numpy as np
@@ -18,6 +18,9 @@ Configuration
 """
 
 from evaluation.stats.util.argparser import *
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 ## We may want to use a perturbed raw trace as reference
 use_perturb_ref = False
@@ -380,7 +383,10 @@ labels = ["raw"] + labels
 fields = list(field_configs.keys())
 
 # Create figure with two subplots
-fig, axes = vis.subplots(1, 2, figsize=(32, 4.8)) 
+if folder == 'cascadenet_test_cond':
+    fig, axes = vis.subplots(1, 2, figsize=(32, 4.8)) 
+else:
+    fig, axes = vis.subplots(1, 2, figsize=(16, 4.8)) 
 labels_to_plot = [label for label in labels if label != "raw"]
 
 # Default label_filter to include all available labels for any fields without specific filters

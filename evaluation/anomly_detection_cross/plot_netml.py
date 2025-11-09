@@ -1,12 +1,16 @@
 import nta.utils.vis as vis
 import pandas as pd
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 from argparse import ArgumentParser
 import glob
 from pathlib import Path
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def parse_args():
     parser = ArgumentParser(description='Plot NetML results')

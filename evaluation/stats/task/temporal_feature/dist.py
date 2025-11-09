@@ -1,6 +1,7 @@
 """
 This script plots the temporal feature differences between raw and synthetic traces.
 """
+import matplotlib
 import matplotlib.pyplot as plt
 import os 
 import numpy as np
@@ -17,6 +18,9 @@ import nta.utils.data as data
 Configuration
 """
 from evaluation.stats.util.argparser import *
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 use_perturb_ref = False
 perturb_coeff = 0.05
@@ -584,7 +588,11 @@ for i, field in enumerate(fields):
     current_pos += group_width + group_gap
 
 # Create the figure and axes
-fig, ax = plt.subplots(figsize=(16, 4.8))
+if folder == 'cascadenet_test_cond':
+    fig, ax = plt.subplots(figsize=(16, 4.8))
+else:
+    fig, ax = plt.subplots(figsize=(8, 4.8))
+
 dataset_styles = {
     label: {
         'color': 'none',

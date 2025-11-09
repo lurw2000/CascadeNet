@@ -2,10 +2,14 @@ import os
 import json
 import pandas as pd
 from collections import defaultdict
+import matplotlib
 import matplotlib.pyplot as plt
 import nta.utils.vis as vis
 import numpy as np
 import argparse
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def get_dataset_info(test_mode=False, test_original_path='../../test_data/original.csv', 
                      test_generated_path='../../test_data/generated.csv'):

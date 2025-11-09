@@ -2,6 +2,7 @@ import numpy as np
 import os
 import pandas as pd
 import time
+import matplotlib
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import warnings
@@ -12,6 +13,9 @@ from scipy.stats import wasserstein_distance, entropy
 import nta.utils.data as data
 import nta.utils.stats as stats
 import nta.utils.vis as vis
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def get_dataset_info(test_mode=False, test_original_path='../../test_data/original.csv', 
                      test_generated_path='../../test_data/generated.csv'):

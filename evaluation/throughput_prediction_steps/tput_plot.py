@@ -1,10 +1,14 @@
 import pandas as pd
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 import nta.utils.vis as vis
 import math
 import os
 import argparse
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def get_dataset_configs(test_mode=False):
     """
@@ -196,6 +200,13 @@ def plot_results(results, generators, models, dataset, stat, output_folder, conf
             # Only apply capping in test mode
             if test_mode and y_max > 15:
                 y_max = 15
+            
+            if dataset == 'CA':
+                y_max = 10
+            elif dataset == 'CAIDA':
+                y_max = 5
+            else:
+                y_max = 4
                 
             def find_best_interval(y_max):
                 potential_intervals = [1, 2, 5, 10, 20, 50, 100]
